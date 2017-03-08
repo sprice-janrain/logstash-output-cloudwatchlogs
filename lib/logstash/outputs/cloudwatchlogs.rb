@@ -145,7 +145,7 @@ class LogStash::Outputs::CloudWatchLogs < LogStash::Outputs::Base
       @codec.encode(event)
     else
       @buffer.enq({:timestamp => event.timestamp.time.to_f*1000,
-       :message => event[MESSAGE] })
+       :message => event.get(MESSAGE) })
     end
   end # def receive
 
@@ -246,7 +246,7 @@ class LogStash::Outputs::CloudWatchLogs < LogStash::Outputs::Base
 
   private
   def invalid?(event)
-    status = event[TIMESTAMP].nil? || (!@use_codec && event[MESSAGE].nil?)
+    status = event.get(TIMESTAMP).nil? || (!@use_codec && event[MESSAGE].nil?)
     if status
       @logger.warn("Skipping invalid event #{event.to_hash}")
     end
