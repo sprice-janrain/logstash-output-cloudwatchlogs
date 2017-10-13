@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # Files
-  s.files = `git ls-files`.split($\)+::Dir.glob('vendor/*')
+  s.files = '' #`git ls-files`.split($\)+::Dir.glob('vendor/*')
 
   # Tests
   s.test_files = s.files.grep(%r{^(test|spec|features)/})
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   # Gem dependencies
   s.add_runtime_dependency 'logstash-core', '>= 2.0.0', '< 6.0.0'
-  s.add_runtime_dependency 'logstash-codec-plain', '>= 2.0.0', '<= 3.0.2'
+  s.add_runtime_dependency 'logstash-codec-plain', '>= 2.0.0', '<= 3.0.3'
   s.add_runtime_dependency 'logstash-mixin-aws', '>= 2.0.0'
 
   s.add_development_dependency 'logstash-devutils'

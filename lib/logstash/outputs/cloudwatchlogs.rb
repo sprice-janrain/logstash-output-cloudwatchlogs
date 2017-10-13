@@ -81,6 +81,10 @@ class LogStash::Outputs::CloudWatchLogs < LogStash::Outputs::Base
   public
   def register
     require "aws-sdk"
+    require "logstash/outputs/patch"
+
+    Aws.eager_autoload!
+
     @cwl = Aws::CloudWatchLogs::Client.new(aws_options_hash)
 
     if @batch_count > MAX_BATCH_COUNT
